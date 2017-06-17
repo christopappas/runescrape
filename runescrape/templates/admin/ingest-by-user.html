@@ -1,0 +1,22 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+ 
+  <p>Ingest skill data for an OSRS user!</p>
+
+  <form action="{{ request.get_full_path|safe }}" method="post">
+    {% csrf_token %}
+    <input name="input_name" type="text" placeholder="OSRS Username Here"></input>
+    <br/><br/>
+    <input type="submit" name="submit" value="Scrape and Ingest"/>
+  </form>
+
+  {% if scraped_user and successful_ingest %}
+  <p>Attempting to grab user data from OSRS hiscores for user <strong>{{ scraped_user }}</strong>...</p>
+  {% endif %}
+
+  {% if scraped_user and not successful_ingest %}
+  <p>Did not find user <strong>{{ scraped_user }}</strong> on OSRS hiscores.</p>
+  {% endif %}
+
+{% endblock %}

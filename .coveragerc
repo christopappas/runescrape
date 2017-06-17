@@ -1,0 +1,8 @@
+[report]
+show_missing=True
+
+[run]
+omit = *migrations*
+       *local*
+       *settings*
+       */tests/*	
